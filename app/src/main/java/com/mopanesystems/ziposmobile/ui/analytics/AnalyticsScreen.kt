@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.livedata.observeAsState
+import com.mopanesystems.ziposmobile.data.model.CustomerAnalytics
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.*
@@ -26,7 +27,7 @@ fun AnalyticsScreen() {
     var transactionCount by remember { mutableStateOf(0) }
     var averageTransaction by remember { mutableStateOf(0.0) }
     var topProducts by remember { mutableStateOf(listOf<TopProduct>()) }
-    var customerAnalytics by remember { mutableStateOf(listOf<CustomerAnalytics>()) }
+    var customerAnalytics by remember { mutableStateOf(listOf<com.mopanesystems.ziposmobile.data.model.CustomerAnalytics>()) }
     
     val periods = listOf("Today", "This Week", "This Month", "This Year")
 }
@@ -108,12 +109,14 @@ fun AnalyticsScreenCompose(
                     MetricCard(
                         title = "Total Sales",
                         value = formatCurrency(totalSales),
-                        color = MaterialTheme.colorScheme.primary
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.weight(1f)
                     )
                     MetricCard(
                         title = "Transactions",
                         value = transactionCount.toString(),
-                        color = MaterialTheme.colorScheme.secondary
+                        color = MaterialTheme.colorScheme.secondary,
+                        modifier = Modifier.weight(1f)
                     )
                 }
                 
@@ -126,12 +129,14 @@ fun AnalyticsScreenCompose(
                     MetricCard(
                         title = "Avg Transaction",
                         value = formatCurrency(averageTransaction),
-                        color = MaterialTheme.colorScheme.tertiary
+                        color = MaterialTheme.colorScheme.tertiary,
+                        modifier = Modifier.weight(1f)
                     )
                     MetricCard(
                         title = "Refunds",
                         value = formatCurrency(totalRefunds),
-                        color = MaterialTheme.colorScheme.error
+                        color = MaterialTheme.colorScheme.error,
+                        modifier = Modifier.weight(1f)
                     )
                 }
             }
@@ -201,7 +206,7 @@ fun MetricCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.weight(1f)
+        modifier = modifier
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -258,7 +263,7 @@ fun TopProductCard(product: TopProduct) {
 }
 
 @Composable
-fun CustomerAnalyticsCard(customer: CustomerAnalytics) {
+fun CustomerAnalyticsCard(customer: com.mopanesystems.ziposmobile.data.model.CustomerAnalytics) {
     Card(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -278,7 +283,7 @@ fun CustomerAnalyticsCard(customer: CustomerAnalytics) {
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Transactions: ${customer.transactionCount}",
+                    text = "Transactions: ${customer.totalTransactions}",
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
@@ -357,12 +362,12 @@ fun CustomerAnalyticsCardCompose(customer: com.mopanesystems.ziposmobile.data.mo
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = customer.customerName,
+                    text = customer.customerId, // TODO: Get actual customer name from Customer entity
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Transactions: ${customer.transactionCount}",
+                    text = "Transactions: ${customer.totalTransactions}",
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
@@ -387,10 +392,4 @@ private fun formatCurrency(amount: BigDecimal): String {
     return formatter.format(amount)
 }
 
-data class CustomerAnalytics(
-    val id: String,
-    val name: String,
-    val totalSpent: Double,
-    val transactionCount: Int,
-    val loyaltyTier: String
-)
+// CustomerAnalytics data class is defined in data.model package

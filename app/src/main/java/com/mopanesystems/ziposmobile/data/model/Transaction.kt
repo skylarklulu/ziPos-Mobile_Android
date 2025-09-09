@@ -66,7 +66,12 @@ enum class TransactionType {
     REFUND,
     RETURN,
     EXCHANGE,
-    VOID
+    VOID,
+    PURCHASE,
+    DEPOSIT,
+    WITHDRAWAL,
+    PAYMENT,
+    ADJUSTMENT
 }
 
 enum class TransactionStatus {

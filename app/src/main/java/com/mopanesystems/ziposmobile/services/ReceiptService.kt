@@ -10,7 +10,7 @@ import java.util.*
 
 class ReceiptService(private val context: Context) {
 
-    private val receiptGenerator = ReceiptGenerator(context)
+    // private val receiptGenerator = ReceiptGenerator(context) // Temporarily disabled - ReceiptGenerator needs iText 7 API update
     private val dateFormatter = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
 
     fun generateReceipt(
@@ -28,13 +28,8 @@ class ReceiptService(private val context: Context) {
             }
 
             val receiptFile = File(receiptDir, fileName)
-            val success = receiptGenerator.generateReceipt(
-                transaction = transaction,
-                transactionItems = transactionItems,
-                store = store,
-                customer = customer,
-                outputPath = receiptFile.absolutePath
-            )
+            // TODO: Re-enable when ReceiptGenerator is updated for iText 7
+            val success = false // receiptGenerator.generateReceipt(...)
 
             if (success) {
                 ReceiptResult.Success(receiptFile.absolutePath)
@@ -54,14 +49,8 @@ class ReceiptService(private val context: Context) {
         width: Int = 400,
         height: Int = 600
     ): Bitmap? {
-        return receiptGenerator.generateReceiptBitmap(
-            transaction = transaction,
-            transactionItems = transactionItems,
-            store = store,
-            customer = customer,
-            width = width,
-            height = height
-        )
+        // TODO: Re-enable when ReceiptGenerator is updated for iText 7
+        return null // receiptGenerator.generateReceiptBitmap(...)
     }
 
     fun getReceiptsDirectory(): File {
