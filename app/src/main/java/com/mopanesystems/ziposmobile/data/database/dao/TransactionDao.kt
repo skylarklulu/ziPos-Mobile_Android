@@ -5,6 +5,7 @@ import com.mopanesystems.ziposmobile.data.model.Transaction
 import com.mopanesystems.ziposmobile.data.model.TransactionStatus
 import com.mopanesystems.ziposmobile.data.model.TransactionItem
 import com.mopanesystems.ziposmobile.data.model.Payment
+import com.mopanesystems.ziposmobile.data.model.PaymentMethod
 import kotlinx.coroutines.flow.Flow
 import java.math.BigDecimal
 import java.time.LocalDateTime

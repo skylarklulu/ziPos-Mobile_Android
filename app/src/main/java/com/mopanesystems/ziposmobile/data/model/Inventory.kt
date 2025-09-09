@@ -15,7 +15,8 @@ data class InventoryAdjustment(
     val notes: String? = null,
     val userId: String,
     val storeId: String,
-    val createdAt: LocalDateTime = LocalDateTime.now()
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+    val isSynced: Boolean = false
 )
 
 @Entity(tableName = "stock_alerts")
@@ -28,6 +29,7 @@ data class StockAlert(
     val alertType: AlertType,
     val isActive: Boolean = true,
     val createdAt: LocalDateTime = LocalDateTime.now(),
+    val resolvedAt: LocalDateTime? = null,
     val acknowledgedAt: LocalDateTime? = null,
     val storeId: String
 )
@@ -69,17 +71,7 @@ data class PurchaseOrder(
     val updatedAt: LocalDateTime = LocalDateTime.now()
 )
 
-@Entity(tableName = "purchase_order_items")
-data class PurchaseOrderItem(
-    @PrimaryKey
-    val id: String,
-    val orderId: String,
-    val productId: String,
-    val quantity: Int,
-    val unitCost: BigDecimal,
-    val totalCost: BigDecimal,
-    val receivedQuantity: Int = 0
-)
+// PurchaseOrderItem moved to AdditionalModels.kt to avoid duplication
 
 enum class AdjustmentReason {
     STOCK_TAKE,

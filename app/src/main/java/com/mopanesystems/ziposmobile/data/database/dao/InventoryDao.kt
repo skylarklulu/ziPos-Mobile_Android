@@ -16,7 +16,7 @@ interface InventoryAdjustmentDao {
     @Query("SELECT * FROM inventory_adjustments WHERE productId = :productId ORDER BY createdAt DESC")
     fun getAdjustmentsByProduct(productId: String): Flow<List<InventoryAdjustment>>
 
-    @Query("SELECT * FROM inventory_adjustments WHERE adjustedBy = :userId ORDER BY createdAt DESC")
+    @Query("SELECT * FROM inventory_adjustments WHERE userId = :userId ORDER BY createdAt DESC")
     fun getAdjustmentsByUser(userId: String): Flow<List<InventoryAdjustment>>
 
     @Query("SELECT * FROM inventory_adjustments WHERE reason = :reason ORDER BY createdAt DESC")
