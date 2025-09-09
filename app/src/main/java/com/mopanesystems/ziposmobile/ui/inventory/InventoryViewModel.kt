@@ -95,7 +95,7 @@ class InventoryViewModel(private val database: POSDatabase) : ViewModel() {
                     quantity = quantity,
                     reason = reason,
                     notes = notes,
-                    adjustedBy = adjustedBy,
+                    userId = adjustedBy,
                     storeId = storeId,
                     createdAt = LocalDateTime.now()
                 )
@@ -141,7 +141,7 @@ class InventoryViewModel(private val database: POSDatabase) : ViewModel() {
                     id = UUID.randomUUID().toString(),
                     productId = productId,
                     currentStock = currentStock,
-                    minThreshold = minThreshold,
+                    threshold = minThreshold,
                     alertType = alertType,
                     isActive = true,
                     createdAt = LocalDateTime.now(),

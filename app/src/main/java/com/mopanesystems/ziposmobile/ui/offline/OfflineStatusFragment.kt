@@ -15,7 +15,7 @@ import androidx.fragment.app.viewModels
 import com.mopanesystems.ziposmobile.ui.theme.ZiPOSTheme
 
 class OfflineStatusFragment : Fragment() {
-    private val viewModel: OfflineStatusViewModel by viewModels()
+    // private val viewModel: OfflineStatusViewModel by viewModels() // Temporarily disabled - depends on disabled services
 
     override fun onCreateView(
         inflater: LayoutInflater,

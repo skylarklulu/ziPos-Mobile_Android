@@ -204,7 +204,7 @@ fun StockAlertCard(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = alert.productName,
+                    text = alert.productId, // TODO: Fetch product name from Product entity
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -213,7 +213,7 @@ fun StockAlertCard(
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = alert.alertType,
+                    text = alert.alertType.name,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.error
                 )
@@ -247,7 +247,7 @@ fun AdjustmentCard(adjustment: InventoryAdjustment) {
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = adjustment.productName,
+                    text = adjustment.productId, // TODO: Fetch product name from Product entity
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -256,7 +256,7 @@ fun AdjustmentCard(adjustment: InventoryAdjustment) {
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = "By: ${adjustment.adjustedBy} | ${adjustment.date}",
+                    text = "By: ${adjustment.userId} | ${adjustment.createdAt}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -286,7 +286,7 @@ fun StockAlertCardCompose(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = alert.productName,
+                    text = alert.productId, // TODO: Fetch product name from Product entity
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -329,7 +329,7 @@ fun AdjustmentCardCompose(adjustment: com.mopanesystems.ziposmobile.data.model.I
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = adjustment.productName,
+                    text = adjustment.productId, // TODO: Fetch product name from Product entity
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -338,7 +338,7 @@ fun AdjustmentCardCompose(adjustment: com.mopanesystems.ziposmobile.data.model.I
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = "By: ${adjustment.adjustedBy} | ${adjustment.adjustedAt}",
+                    text = "By: ${adjustment.userId} | ${adjustment.createdAt}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

@@ -278,7 +278,7 @@ fun CustomerAnalyticsCard(customer: com.mopanesystems.ziposmobile.data.model.Cus
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = customer.name,
+                    text = customer.customerId, // TODO: Fetch customer name from Customer entity
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
@@ -326,7 +326,7 @@ fun TopProductCardCompose(product: com.mopanesystems.ziposmobile.data.model.Prod
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = product.productName,
+                    text = product.productId, // TODO: Fetch product name from Product entity
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )

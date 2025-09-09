@@ -164,7 +164,7 @@ class POSViewModel @Inject constructor(
 
     fun processTransaction(paymentMethod: PaymentMethod, paidAmount: BigDecimal? = null) {
         viewModelScope.launch {
-            if (_cartItems.value.isEmpty()) return
+            if (_cartItems.value.isEmpty()) return@launch
 
             _isProcessing.value = true
             _transactionStatus.value = TransactionStatus.IN_PROGRESS

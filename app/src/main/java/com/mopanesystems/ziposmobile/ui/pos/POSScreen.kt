@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.mopanesystems.ziposmobile.ui.pos.CartItem
 import com.mopanesystems.ziposmobile.data.model.PaymentMethod
 import java.text.NumberFormat
 
@@ -385,12 +386,12 @@ fun CartItemRow(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = item.name,
+                    text = item.product.name,
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Medium
                 )
                 Text(
-                    text = "$${String.format("%.2f", item.price)} each",
+                    text = "$${String.format("%.2f", item.product.price.toDouble())} each",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -424,7 +425,7 @@ fun CartItemRow(
 
 @Composable
 fun CartItemRowCompose(
-    item: com.mopanesystems.ziposmobile.data.model.CartItem,
+    item: CartItem,
     onQuantityChange: (Int) -> Unit,
     onRemove: () -> Unit
 ) {
@@ -449,7 +450,7 @@ fun CartItemRowCompose(
                     fontWeight = FontWeight.Medium
                 )
                 Text(
-                    text = "$${String.format("%.2f", item.product.price)} each",
+                    text = "$${String.format("%.2f", item.product.price.toDouble())} each",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

@@ -16,6 +16,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mopanesystems.ziposmobile.ui.customers.CustomerViewModel
+import java.math.BigDecimal
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -292,7 +293,7 @@ fun CustomerCardCompose(
                 Text(
                     text = "Balance: $${customer.balance}",
                     style = MaterialTheme.typography.bodySmall,
-                    color = if (customer.balance > 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                    color = if (customer.balance > BigDecimal.ZERO) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Text(
                     text = "Loyalty Points: ${customer.loyaltyPoints}",

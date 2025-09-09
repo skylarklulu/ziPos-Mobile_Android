@@ -210,7 +210,7 @@ fun ProductCardCompose(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = product.category?.name ?: "No Category",
+                    text = product.categoryId ?: "No Category",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
