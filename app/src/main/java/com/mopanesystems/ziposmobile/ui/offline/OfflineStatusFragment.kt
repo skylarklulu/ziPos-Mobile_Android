@@ -29,7 +29,7 @@ class OfflineStatusFragment : Fragment() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        OfflineStatusScreenCompose(viewModel = viewModel)
+                        OfflineStatusScreenCompose() // Temporarily disabled ViewModel
                     }
                 }
             }

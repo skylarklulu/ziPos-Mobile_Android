@@ -13,15 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.mopanesystems.ziposmobile.ui.products.ProductViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProductsScreen() {
-    var searchQuery by remember { mutableStateOf("") }
-    var selectedCategory by remember { mutableStateOf("All") }
-    var products by remember { mutableStateOf(listOf<Product>()) }
-    
-    val categories = listOf("All", "Electronics", "Clothing", "Books", "Food")
+fun ProductsScreen(
+    viewModel: ProductViewModel = hiltViewModel()
+) {
+    ProductsScreenCompose(viewModel = viewModel)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -16,15 +16,16 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OfflineStatusScreenCompose(
-    viewModel: OfflineStatusViewModel
+    // viewModel: OfflineStatusViewModel // Temporarily disabled - depends on disabled services
 ) {
-    val connectionStatus by viewModel.connectionStatus.collectAsStateWithLifecycle()
-    val syncStatus by viewModel.syncStatus.collectAsStateWithLifecycle()
-    val lastSyncTime by viewModel.lastSyncTime.collectAsStateWithLifecycle()
-    val queuedItemsCount by viewModel.queuedItemsCount.collectAsStateWithLifecycle()
-    val isSyncing by viewModel.isSyncing.collectAsStateWithLifecycle()
-    val syncProgress by viewModel.syncProgress.collectAsStateWithLifecycle()
-    val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
+    // TODO: Re-enable ViewModel integration when OfflineQueueManager and SyncService are restored
+    val connectionStatus by remember { mutableStateOf(true) } // Online = true
+    val syncStatus by remember { mutableStateOf("Idle") }
+    val lastSyncTime by remember { mutableStateOf("Never") }
+    val queuedItemsCount by remember { mutableStateOf(0) }
+    val isSyncing by remember { mutableStateOf(false) }
+    val syncProgress by remember { mutableStateOf(0f) }
+    val errorMessage by remember { mutableStateOf<String?>(null) }
     
     Column(
         modifier = Modifier
@@ -128,7 +129,7 @@ fun OfflineStatusScreenCompose(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                onClick = { viewModel.syncNow() },
+                onClick = { /* TODO: Re-enable when ViewModel is restored */ },
                 modifier = Modifier.weight(1f),
                 enabled = !isSyncing && connectionStatus
             ) {
@@ -138,7 +139,7 @@ fun OfflineStatusScreenCompose(
             }
             
             OutlinedButton(
-                onClick = { viewModel.viewOfflineQueue() },
+                onClick = { /* TODO: Re-enable when ViewModel is restored */ },
                 modifier = Modifier.weight(1f)
             ) {
                 Icon(Icons.Default.Queue, contentDescription = null)

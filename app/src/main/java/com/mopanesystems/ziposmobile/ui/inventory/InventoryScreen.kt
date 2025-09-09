@@ -13,14 +13,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.mopanesystems.ziposmobile.ui.inventory.InventoryViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InventoryScreen() {
-    var lowStockCount by remember { mutableStateOf(5) }
-    var outOfStockCount by remember { mutableStateOf(2) }
-    var stockAlerts by remember { mutableStateOf(listOf<StockAlert>()) }
-    var recentAdjustments by remember { mutableStateOf(listOf<InventoryAdjustment>()) }
+fun InventoryScreen(
+    viewModel: InventoryViewModel = hiltViewModel()
+) {
+    InventoryScreenCompose(viewModel = viewModel)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

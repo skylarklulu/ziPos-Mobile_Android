@@ -13,12 +13,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.mopanesystems.ziposmobile.ui.customers.CustomerViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomersScreen() {
-    var searchQuery by remember { mutableStateOf("") }
-    var customers by remember { mutableStateOf(listOf<Customer>()) }
+fun CustomersScreen(
+    viewModel: CustomerViewModel = hiltViewModel()
+) {
+    CustomersScreenCompose(viewModel = viewModel)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
