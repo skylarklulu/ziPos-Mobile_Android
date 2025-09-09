@@ -34,25 +34,6 @@ data class Customer(
         get() = "$firstName $lastName"
 }
 
-@Entity(tableName = "customer_transactions")
-data class CustomerTransaction(
-    @PrimaryKey
-    val id: String,
-    val customerId: String,
-    val transactionId: String,
-    val type: TransactionType,
-    val amount: BigDecimal,
-    val balance: BigDecimal,
-    val description: String? = null,
-    val createdAt: LocalDateTime = LocalDateTime.now(),
-    val storeId: String? = null
-)
+// CustomerTransaction entity is defined in CustomerTransaction.kt to avoid duplication
 
-enum class TransactionType {
-    PURCHASE,
-    REFUND,
-    PAYMENT,
-    ADJUSTMENT,
-    WITHDRAWAL,
-    DEPOSIT
-}
+// TransactionType enum is defined in Transaction.kt to avoid duplication

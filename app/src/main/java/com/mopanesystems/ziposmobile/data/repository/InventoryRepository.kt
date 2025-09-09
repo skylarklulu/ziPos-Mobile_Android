@@ -24,7 +24,7 @@ class InventoryRepository @Inject constructor(
     
     fun getAdjustmentsByUser(userId: String): Flow<List<InventoryAdjustment>> = inventoryAdjustmentDao.getAdjustmentsByUser(userId)
     
-    fun getAdjustmentsByReason(reason: AdjustmentReason): Flow<List<InventoryAdjustment>> = inventoryAdjustmentDao.getAdjustmentsByReason(reason)
+    fun getAdjustmentsByReason(reason: AdjustmentReason): Flow<List<InventoryAdjustment>> = inventoryAdjustmentDao.getAdjustmentsByReason(reason.name)
     
     suspend fun insertAdjustment(adjustment: InventoryAdjustment) = inventoryAdjustmentDao.insertAdjustment(adjustment)
     
@@ -39,7 +39,7 @@ class InventoryRepository @Inject constructor(
     
     fun getActiveAlertsByProduct(productId: String): Flow<List<StockAlert>> = stockAlertDao.getActiveAlertsByProduct(productId)
     
-    fun getAlertsByType(alertType: AlertType): Flow<List<StockAlert>> = stockAlertDao.getAlertsByType(alertType)
+    fun getAlertsByType(alertType: AlertType): Flow<List<StockAlert>> = stockAlertDao.getAlertsByType(alertType.name)
     
     suspend fun insertAlert(alert: StockAlert) = stockAlertDao.insertAlert(alert)
     
@@ -76,7 +76,7 @@ class InventoryRepository @Inject constructor(
     
     fun getOrdersBySupplier(supplierId: String): Flow<List<PurchaseOrder>> = purchaseOrderDao.getOrdersBySupplier(supplierId)
     
-    fun getOrdersByStatus(status: OrderStatus): Flow<List<PurchaseOrder>> = purchaseOrderDao.getOrdersByStatus(status)
+    fun getOrdersByStatus(status: OrderStatus): Flow<List<PurchaseOrder>> = purchaseOrderDao.getOrdersByStatus(status.name)
     
     suspend fun getOrderById(id: String): PurchaseOrder? = purchaseOrderDao.getOrderById(id)
     
@@ -86,7 +86,7 @@ class InventoryRepository @Inject constructor(
     
     suspend fun deleteOrder(order: PurchaseOrder) = purchaseOrderDao.deleteOrder(order)
     
-    suspend fun updateOrderStatus(orderId: String, status: OrderStatus) = purchaseOrderDao.updateOrderStatus(orderId, status)
+    suspend fun updateOrderStatus(orderId: String, status: OrderStatus) = purchaseOrderDao.updateOrderStatus(orderId, status.name)
     
     // Purchase Order Items
     fun getOrderItems(orderId: String): Flow<List<PurchaseOrderItem>> = purchaseOrderItemDao.getOrderItems(orderId)

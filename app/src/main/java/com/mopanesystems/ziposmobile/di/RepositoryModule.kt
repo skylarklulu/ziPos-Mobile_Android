@@ -45,15 +45,13 @@ object RepositoryModule {
         stockAlertDao: StockAlertDao,
         supplierDao: SupplierDao,
         purchaseOrderDao: PurchaseOrderDao,
-        purchaseOrderItemDao: PurchaseOrderItemDao,
-        productDao: ProductDao
+        purchaseOrderItemDao: PurchaseOrderItemDao
     ): InventoryRepository = InventoryRepository(
         inventoryAdjustmentDao,
         stockAlertDao,
         supplierDao,
         purchaseOrderDao,
-        purchaseOrderItemDao,
-        productDao
+        purchaseOrderItemDao
     )
 
     @Provides

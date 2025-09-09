@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.runtime.livedata.observeAsState
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.*
@@ -36,15 +36,15 @@ fun AnalyticsScreen() {
 fun AnalyticsScreenCompose(
     viewModel: AnalyticsViewModel
 ) {
-    val dailySales by viewModel.dailySales.collectAsStateWithLifecycle()
-    val topProducts by viewModel.topProducts.collectAsStateWithLifecycle()
-    val customerAnalytics by viewModel.customerAnalytics.collectAsStateWithLifecycle()
-    val totalSales by viewModel.totalSales.collectAsStateWithLifecycle()
-    val transactionCount by viewModel.transactionCount.collectAsStateWithLifecycle()
-    val averageTransaction by viewModel.averageTransaction.collectAsStateWithLifecycle()
-    val totalRefunds by viewModel.totalRefunds.collectAsStateWithLifecycle()
-    val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
-    val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
+    val dailySales by viewModel.dailySales.observeAsState(emptyList())
+    val topProducts by viewModel.topProducts.observeAsState(emptyList())
+    val customerAnalytics by viewModel.customerAnalytics.observeAsState(emptyList())
+    val totalSales by viewModel.totalSales.observeAsState(BigDecimal.ZERO)
+    val transactionCount by viewModel.transactionCount.observeAsState(0)
+    val averageTransaction by viewModel.averageTransaction.observeAsState(BigDecimal.ZERO)
+    val totalRefunds by viewModel.totalRefunds.observeAsState(BigDecimal.ZERO)
+    val isLoading by viewModel.isLoading.observeAsState(false)
+    val errorMessage by viewModel.errorMessage.observeAsState()
     
     var selectedPeriod by remember { mutableStateOf("Today") }
     val periods = listOf("Today", "This Week", "This Month", "This Year")
