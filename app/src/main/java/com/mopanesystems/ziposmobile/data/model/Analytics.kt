@@ -80,14 +80,14 @@ data class RefundAnalytics(
 data class SyncLog(
     @PrimaryKey
     val id: String,
-    val storeId: String,
-    val syncType: SyncType,
+    val syncType: String,
     val status: SyncStatus,
     val recordsProcessed: Int,
     val recordsFailed: Int,
-    val startTime: LocalDateTime,
-    val endTime: LocalDateTime? = null,
     val errorMessage: String? = null,
+    val startedAt: LocalDateTime,
+    val completedAt: LocalDateTime? = null,
+    val storeId: String,
     val createdAt: LocalDateTime = LocalDateTime.now()
 )
 

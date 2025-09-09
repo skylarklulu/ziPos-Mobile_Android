@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.mopanesystems.ziposmobile.ui.navigation.MainNavigation
 import com.mopanesystems.ziposmobile.ui.theme.ZiPOSTheme
 import dagger.hilt.android.AndroidEntryPoint
 

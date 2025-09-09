@@ -26,7 +26,7 @@ data class StockAlert(
     val productId: String,
     val currentStock: Int,
     val threshold: Int,
-    val alertType: AlertType,
+    val alertType: StockAlertType,
     val isActive: Boolean = true,
     val createdAt: LocalDateTime = LocalDateTime.now(),
     val resolvedAt: LocalDateTime? = null,
@@ -71,7 +71,17 @@ data class PurchaseOrder(
     val updatedAt: LocalDateTime = LocalDateTime.now()
 )
 
-// PurchaseOrderItem moved to AdditionalModels.kt to avoid duplication
+@Entity(tableName = "purchase_order_items")
+data class PurchaseOrderItem(
+    @PrimaryKey
+    val id: String,
+    val purchaseOrderId: String,
+    val productId: String,
+    val quantity: Int,
+    val unitCost: BigDecimal,
+    val totalCost: BigDecimal,
+    val receivedQuantity: Int = 0
+)
 
 enum class AdjustmentReason {
     STOCK_TAKE,
@@ -84,6 +94,13 @@ enum class AdjustmentReason {
 }
 
 enum class AlertType {
+    LOW_STOCK,
+    OUT_OF_STOCK,
+    OVERSTOCK,
+    EXPIRING_SOON
+}
+
+enum class StockAlertType {
     LOW_STOCK,
     OUT_OF_STOCK,
     OVERSTOCK,
