@@ -4,13 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mopanesystems.ziposmobile.data.database.POSDatabase
+import com.mopanesystems.ziposmobile.data.repository.InventoryRepository
 import com.mopanesystems.ziposmobile.data.model.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.util.UUID
+import javax.inject.Inject
 
-class InventoryViewModel(private val database: POSDatabase) : ViewModel() {
+@HiltViewModel
+class InventoryViewModel @Inject constructor(
+    private val inventoryRepository: InventoryRepository
+) : ViewModel() {
 
     private val _stockAlerts = MutableLiveData<List<StockAlert>>()
     val stockAlerts: LiveData<List<StockAlert>> = _stockAlerts
@@ -40,14 +45,14 @@ class InventoryViewModel(private val database: POSDatabase) : ViewModel() {
                 _isLoading.value = true
                 
                 // Load stock alerts
-                val alerts = database.stockAlertDao().getActiveAlerts()
+                val alerts = inventoryRepository.getActiveAlerts()
                 alerts.collect { alertList ->
                     _stockAlerts.value = alertList
                     updateStockCounts(alertList)
                 }
                 
                 // Load recent adjustments (last 10)
-                val adjustments = database.inventoryAdjustmentDao().getAllAdjustments()
+                val adjustments = inventoryRepository.getAllAdjustments()
                 adjustments.collect { adjustmentList ->
                     _recentAdjustments.value = adjustmentList.take(10)
                 }
@@ -71,7 +76,7 @@ class InventoryViewModel(private val database: POSDatabase) : ViewModel() {
     fun acknowledgeAlert(alert: StockAlert) {
         viewModelScope.launch {
             try {
-                database.stockAlertDao().acknowledgeAlert(alert.id, LocalDateTime.now())
+                inventoryRepository.acknowledgeAlert(alert.id, LocalDateTime.now())
                 loadInventoryData() // Refresh data
             } catch (e: Exception) {
                 _errorMessage.value = "Error acknowledging alert: ${e.message}"
@@ -100,7 +105,7 @@ class InventoryViewModel(private val database: POSDatabase) : ViewModel() {
                     createdAt = LocalDateTime.now()
                 )
                 
-                database.inventoryAdjustmentDao().insertAdjustment(adjustment)
+                inventoryRepository.insertAdjustment(adjustment)
                 
                 // Update product stock
                 updateProductStock(productId, quantity)
@@ -148,7 +153,7 @@ class InventoryViewModel(private val database: POSDatabase) : ViewModel() {
                     storeId = storeId
                 )
                 
-                database.stockAlertDao().insertAlert(alert)
+                inventoryRepository.insertAlert(alert)
                 loadInventoryData() // Refresh data
                 
             } catch (e: Exception) {

@@ -11,11 +11,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.mopanesystems.ziposmobile.data.database.POSDatabase
+import androidx.fragment.app.viewModels
 import com.mopanesystems.ziposmobile.ui.theme.ZiPOSTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InventoryFragment : Fragment() {
-    private lateinit var viewModel: InventoryViewModel
+    private val viewModel: InventoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +37,4 @@ class InventoryFragment : Fragment() {
             }
         }
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        
-        // Initialize database and ViewModel
-        val database = POSDatabase.getDatabase(requireContext())
-        viewModel = InventoryViewModel(database)
-    }
-
 }

@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -47,7 +48,7 @@ fun MainNavigation(navController: androidx.navigation.NavController) {
         ) {
             composable("pos") {
                 POSScreenCompose(
-                    viewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+                    viewModel = hiltViewModel(),
                     onScanBarcode = { /* Handle barcode scanning */ },
                     onProcessPayment = { /* Handle payment */ },
                     onClearCart = { /* Handle clear cart */ },
@@ -57,25 +58,25 @@ fun MainNavigation(navController: androidx.navigation.NavController) {
             
             composable("products") {
                 ProductsScreenCompose(
-                    viewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+                    viewModel = hiltViewModel()
                 )
             }
             
             composable("customers") {
                 CustomersScreenCompose(
-                    viewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+                    viewModel = hiltViewModel()
                 )
             }
             
             composable("inventory") {
                 InventoryScreenCompose(
-                    viewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+                    viewModel = hiltViewModel()
                 )
             }
             
             composable("analytics") {
                 AnalyticsScreenCompose(
-                    viewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+                    viewModel = hiltViewModel()
                 )
             }
         }

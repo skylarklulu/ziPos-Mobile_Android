@@ -12,6 +12,7 @@ import com.mopanesystems.ziposmobile.data.repository.TransactionRepository
 import com.mopanesystems.ziposmobile.services.ReceiptService
 import com.mopanesystems.ziposmobile.services.ReceiptResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,7 +27,7 @@ class POSViewModel @Inject constructor(
     private val productRepository: ProductRepository,
     private val customerRepository: CustomerRepository,
     private val transactionRepository: TransactionRepository,
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     private val _cartItems = MutableStateFlow<List<CartItem>>(emptyList())

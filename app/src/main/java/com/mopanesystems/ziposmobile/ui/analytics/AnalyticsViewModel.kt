@@ -7,14 +7,19 @@ import androidx.lifecycle.viewModelScope
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.mopanesystems.ziposmobile.data.database.POSDatabase
+import com.mopanesystems.ziposmobile.data.repository.AnalyticsRepository
 import com.mopanesystems.ziposmobile.data.model.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
+import javax.inject.Inject
 
-class AnalyticsViewModel(private val database: POSDatabase) : ViewModel() {
+@HiltViewModel
+class AnalyticsViewModel @Inject constructor(
+    private val analyticsRepository: AnalyticsRepository
+) : ViewModel() {
 
     private val _dailySales = MutableLiveData<List<DailySales>>()
     val dailySales: LiveData<List<DailySales>> = _dailySales
@@ -68,14 +73,14 @@ class AnalyticsViewModel(private val database: POSDatabase) : ViewModel() {
                 }
 
                 // Load daily sales data
-                val salesData = database.dailySalesDao().getDailySalesByDateRange(startDate, endDate)
+                val salesData = analyticsRepository.getDailySalesByDateRange(startDate, endDate)
                 salesData.collect { salesList ->
                     _dailySales.value = salesList
                     updateSummaryStats(salesList)
                 }
 
                 // Load top products
-                val productsData = database.productPerformanceDao().getProductPerformanceByPeriod(
+                val productsData = analyticsRepository.getProductPerformanceByPeriod(
                     currentPeriod, startDate, endDate
                 )
                 productsData.collect { productsList ->
@@ -83,7 +88,7 @@ class AnalyticsViewModel(private val database: POSDatabase) : ViewModel() {
                 }
 
                 // Load customer analytics
-                val customersData = database.customerAnalyticsDao().getCustomerAnalyticsByPeriod(
+                val customersData = analyticsRepository.getCustomerAnalyticsByPeriod(
                     currentPeriod, startDate, endDate
                 )
                 customersData.collect { customersList ->
