@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.androidx.navigation.safeargs.kotlin)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt.android)
     id("kotlin-kapt")
 }
 
@@ -39,9 +41,6 @@ android {
         viewBinding = true
         dataBinding = true
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
     }
 }
 
@@ -85,9 +84,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     
-    // Dependency Injection - Temporarily disabled
-    // implementation(libs.hilt.android)
-    // kapt(libs.hilt.compiler)
+    // Dependency Injection
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
     
     // Networking
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
