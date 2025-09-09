@@ -1,6 +1,7 @@
 package com.mopanesystems.ziposmobile.di
 
 import android.content.Context
+import androidx.room.Room
 import com.mopanesystems.ziposmobile.data.database.POSDatabase
 import com.mopanesystems.ziposmobile.data.database.dao.*
 import dagger.Module
@@ -17,7 +18,13 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun providePOSDatabase(@ApplicationContext context: Context): POSDatabase {
-        return POSDatabase.getDatabase(context)
+        return Room.databaseBuilder(
+            context.applicationContext,
+            POSDatabase::class.java,
+            "pos_database"
+        )
+        .fallbackToDestructiveMigration()
+        .build()
     }
 
     @Provides

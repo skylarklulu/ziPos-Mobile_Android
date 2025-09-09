@@ -1,7 +1,10 @@
 package com.mopanesystems.ziposmobile.data.database.dao
 
 import androidx.room.*
-import com.mopanesystems.ziposmobile.data.model.*
+import com.mopanesystems.ziposmobile.data.model.Transaction
+import com.mopanesystems.ziposmobile.data.model.TransactionStatus
+import com.mopanesystems.ziposmobile.data.model.TransactionItem
+import com.mopanesystems.ziposmobile.data.model.Payment
 import kotlinx.coroutines.flow.Flow
 import java.math.BigDecimal
 import java.time.LocalDateTime

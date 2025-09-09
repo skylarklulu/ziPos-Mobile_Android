@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.androidx.navigation.safeargs.kotlin)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt.android)
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -78,7 +78,7 @@ dependencies {
     // Room Database
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
     
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -86,7 +86,7 @@ dependencies {
     
     // Dependency Injection
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     
     // Networking
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -101,7 +101,7 @@ dependencies {
     
     // Image Loading
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    kapt("com.github.bumptech.glide:compiler:4.16.0")
+    ksp("com.github.bumptech.glide:ksp:4.16.0")
     
     // Charts and Analytics
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
