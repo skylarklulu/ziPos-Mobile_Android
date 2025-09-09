@@ -13,8 +13,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mopanesystems.ziposmobile.ui.inventory.InventoryViewModel
+import com.mopanesystems.ziposmobile.data.model.StockAlert
+import com.mopanesystems.ziposmobile.data.model.InventoryAdjustment
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,12 +32,12 @@ fun InventoryScreen(
 fun InventoryScreenCompose(
     viewModel: InventoryViewModel
 ) {
-    val stockAlerts by viewModel.stockAlerts.collectAsStateWithLifecycle()
-    val recentAdjustments by viewModel.recentAdjustments.collectAsStateWithLifecycle()
-    val lowStockCount by viewModel.lowStockCount.collectAsStateWithLifecycle()
-    val outOfStockCount by viewModel.outOfStockCount.collectAsStateWithLifecycle()
-    val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
-    val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
+    val stockAlerts by viewModel.stockAlerts.observeAsState(emptyList())
+    val recentAdjustments by viewModel.recentAdjustments.observeAsState(emptyList())
+    val lowStockCount by viewModel.lowStockCount.observeAsState(0)
+    val outOfStockCount by viewModel.outOfStockCount.observeAsState(0)
+    val isLoading by viewModel.isLoading.observeAsState(false)
+    val errorMessage by viewModel.errorMessage.observeAsState()
     
     Column(
         modifier = Modifier
@@ -262,13 +265,7 @@ fun AdjustmentCard(adjustment: InventoryAdjustment) {
     }
 }
 
-data class StockAlert(
-    val id: String,
-    val productName: String,
-    val currentStock: Int,
-    val threshold: Int,
-    val alertType: String
-)
+// StockAlert data class is defined in data.model package
 
 @Composable
 fun StockAlertCardCompose(
@@ -350,11 +347,4 @@ fun AdjustmentCardCompose(adjustment: com.mopanesystems.ziposmobile.data.model.I
     }
 }
 
-data class InventoryAdjustment(
-    val id: String,
-    val productName: String,
-    val quantity: Int,
-    val reason: String,
-    val adjustedBy: String,
-    val date: String
-)
+// InventoryAdjustment data class is defined in data.model package

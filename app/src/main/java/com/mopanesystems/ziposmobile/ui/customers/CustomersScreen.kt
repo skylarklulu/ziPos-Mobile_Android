@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mopanesystems.ziposmobile.ui.customers.CustomerViewModel
 
@@ -31,7 +32,7 @@ fun CustomersScreenCompose(
 ) {
     val filteredCustomers by viewModel.filteredCustomers.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
-    val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
+    val errorMessage by viewModel.errorMessage.observeAsState()
     val selectedCustomer by viewModel.selectedCustomer.collectAsStateWithLifecycle()
     
     var searchQuery by remember { mutableStateOf("") }
