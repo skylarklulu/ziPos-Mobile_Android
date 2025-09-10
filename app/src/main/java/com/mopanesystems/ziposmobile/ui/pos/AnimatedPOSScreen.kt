@@ -68,7 +68,7 @@ fun AnimatedPOSScreenCompose(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Point of Sale",
+                    text = "Sale",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold
                 )
